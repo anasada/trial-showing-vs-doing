@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title> Showing vs Doing Experiment 1 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+
+<body>
+<form action = "http://localhost:5000/exp1" method = "post">
+
+<!--My goal is to extend Mark Ho's "Showing vs Doing" paper.
+I want to see if participants would begin to develop a 
+shorthand for their demonstrations if they were paired with 
+the same person across many trials.-->
+
+
+<!-- 1: Teaching Goal-Based Reward Functions
+
+5x5 grid (white squares, grey borders)
+In middle square: "Start" in red
+In top right corner: "&" in red
+In bottom left corner: "%" in red
+In bottom right corner: "#" in red"
+
+P1 moves from start to a square; a black line follows this movement.
+-->
+
+
+<!--different conditions--
+idea: if in & condition, "demonstrate goal is &," ends when reach &
+
+Create distribution of &, #, % conditions == 3 of each 
+- each condition is presented randomly to the user
+- until user has completed all trials -->
+
+
+<p id="demo"></p>
+<p id="goal"></p>
+
+<canvas id="myCanvas" width="500" height="500" ></canvas>
+
+
+<script>
+
+// create conditions
+const conditions = ['&', '#', '%'];
+const trialDistribution = []; // contains amount of conditions want
+numberTrials = 3;             // number of times presenting condition 
+
+for (let i = 0; i < 3; i++){
+  for (let index in conditions) {
+    trialDistribution.push(conditions[index]); 
+  }
+}
+
+
+//for (let i=trialDistribution.length; i>0; i--){
+
+
+// generate random element from distribution
+const randomElement = trialDistribution[Math.floor(Math.random() * trialDistribution.length)];
+
+// want to remove from conditions so don't repeat trials
+function checkElement(trialDistribution) {
+  return trialDistribution == randomElement;
+}
+trialDistribution.splice(trialDistribution.findIndex(checkElement),1);
+
+
+// present instructions and set end goals
+if (randomElement == '&') {
+  document.getElementById("demo").innerHTML = "Demonstrate that the goal is: &";
+  xGoal = 450
+  yGoal = 50
+  
+} else if (randomElement == '#'){
+  document.getElementById("demo").innerHTML = "Demonstrate that the goal is: #";
+  xGoal = 450
+  yGoal = 450
+  
+} else if (randomElement == '%'){
+  document.getElementById("demo").innerHTML = "Demonstrate that the goal is: %";
+  xGoal = 50
+  yGoal = 450
+}
+
+// once reach goal, present with new trial
+
+
+
+
+<!--the grid-->
+var w = 500; //width
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+for (let i=0; i<=500; i=i+(w/5)){
+
+  //horizontal lines
+  ctx.moveTo(0,i);
+  ctx.lineTo(w,i);
+
+  //vertical lines
+  ctx.moveTo(i,0);
+  ctx.lineTo(i,w);
+
+  ctx.stroke();
+}
+
+//adding text
+ctx.font = '100px serif';
+ctx.fillStyle = 'red';
+ctx.fillText('&', 410, 85);
+ctx.fillText('%', 10, 485);
+ctx.fillText('#', 425, 485);
+
+ctx.font = '45px serif';
+ctx.fillText('Start', 207, 265);
+
+
+
+<!--user input-->
+
+let x = 250, y = 250; //line coordinates
+
+//line from middle original to middle of next, in user's direction
+document.addEventListener('keydown', (e) => { 
+  e = e || window.event;
+
+  // movement/drawing lines
+  if (e.key === 'ArrowUp' && y>50) {
+    ctx.moveTo(x,y);
+    ctx.lineTo(x,y-100);
+    ctx.stroke();
+    y=y-100;
+
+  } else if (e.key === 'ArrowDown' && y<450) {
+    ctx.moveTo(x,y);
+    ctx.lineTo(x,y+100);
+    ctx.stroke();
+    y=y+100;
+
+  } else if (e.key === 'ArrowLeft' && x>50) {
+    ctx.moveTo(x,y);
+    ctx.lineTo(x-100,y);
+    ctx.stroke();
+    x=x-100;
+
+  } else if (e.key === 'ArrowRight' && x<450) {
+    ctx.moveTo(x,y);
+    ctx.lineTo(x+100,y);
+    ctx.stroke();
+    x=x+100;
+  }
+
+
+  // reaching designated goal
+  if (x == xGoal && y == yGoal) { 
+	document.getElementById("goal").innerHTML = "goal reached!";
+  }
+
+})
+
+</script>
+
+
+<!--whats left: 
+finish and refresh when reach goal,
+adjust lines to show repetitive behavior (either have manual draw, or erase prev line)
+-- to erase prev line, could make prev & curr variables, prev turns opaque every time-->
+
+<!--next steps: 
+host using server,
+sending info to/from server,
+convert into multiplayer.-->
+
+</body>
+</html>
