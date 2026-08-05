@@ -1,27 +1,30 @@
 # Extending Showing vs Doing (Trial Version)
 
-This project was an early prototype created while developing an extension of Mark Ho et al.'s *Showing versus doing: Teaching by demonstration* experiment. The goal was to recreate one of the original experiment conditions as a foundation for future research.
+This project was an early prototype created while developing an extension of Mark Ho et al.'s *Showing versus doing: Teaching by demonstration* experiment.
+
+The goal of this initial implementation was to recreate the basic visual structure of the experiment and become familiar with HTML, CSS, and JavaScript-based interactive interfaces.
+
+<img width="1088" height="616" alt="Screen Shot 2026-08-04 at 7 40 46 PM" src="https://github.com/user-attachments/assets/d4a96783-efd7-4ddd-a2b5-ca02cdc0f737" />
+
+
 
 ## Description
 
-This prototype implements an interactive grid navigation task using HTML5 Canvas. Participants are assigned a target symbol and navigate through a grid using keyboard controls to reach their goal. A visual path tracks their movement throughout the trial.
+This prototype renders a 5×5 grid using the HTML5 Canvas API and highlights the bottom-right cell in green.
 
-The prototype includes:
-- Randomized goal assignment
-- Keyboard-based grid navigation
-- Canvas-based visualization
-- Goal completion detection
+It served as an initial exploration of the visual layout before implementing the full interactive experiment, including participant movement, goal selection, and trial progression.
 
 ## Technologies
-- HTML
-- CSS
-- JavaScript
-- HTML5 Canvas API
+
+* HTML
+* CSS
+* JavaScript
+* HTML5 Canvas API
 
 ## Project Status
 
-This repository contains an early research prototype. The core interaction was implemented, but additional features such as multi-trial progression and expanded experiment functionality were not completed.
+This repository contains an early visual prototype. Later iterations expanded the concept into an interactive experiment implementation.
 
 ## Reference
 
-Ho, M. K., Littman, M. L., MacGlashan, J., Cushman, F., & Austerweil, J. L. (2016). *Showing versus doing: Teaching by demonstration. In Advances in Neural Information Processing Systems 29*
+Ho, M. K., Littman, M. L., MacGlashan, J., Cushman, F., & Austerweil, J. L. (2016). *Showing versus doing: Teaching by demonstration*. In *Advances in Neural Information Processing Systems 29*.
