@@ -1,17 +1,27 @@
 # Extending Showing vs Doing (Trial Version)
 
-This project was an early prototype for a later project, [Showing vs Doing], created to practice the fundamentals of HTML, CSS, and JavaScript.
+This project was an early prototype created while developing an extension of Mark Ho et al.'s *Showing versus doing: Teaching by demonstration* experiment. The goal was to recreate one of the original experiment conditions as a foundation for future research.
 
 ## Description
 
-A simple web page that displays a 5×5 grid centered on the page, with the bottom-right square filled green. The project uses the HTML5 Canvas API to draw the grid and demonstrate basic client-side rendering.
+This prototype implements an interactive grid navigation task using HTML5 Canvas. Participants are assigned a target symbol and navigate through a grid using keyboard controls to reach their goal. A visual path tracks their movement throughout the trial.
 
-## Purpose
-
-This repository served as an introduction to web development concepts and helped build the foundation for future projects involving interactive web pages and canvas-based visuals.
+The prototype includes:
+- Randomized goal assignment
+- Keyboard-based grid navigation
+- Canvas-based visualization
+- Goal completion detection
 
 ## Technologies
 - HTML
 - CSS
-- JavaScript (HTML5 Canvas)
-- PHP (basic serving wrapper)
+- JavaScript
+- HTML5 Canvas API
+
+## Project Status
+
+This repository contains an early research prototype. The core interaction was implemented, but additional features such as multi-trial progression and expanded experiment functionality were not completed.
+
+## Reference
+
+Ho, M. K., Littman, M. L., MacGlashan, J., Cushman, F., & Austerweil, J. L. (2016). *Showing versus doing: Teaching by demonstration. In Advances in Neural Information Processing Systems 29*
